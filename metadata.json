@@ -1,0 +1,5 @@
+{
+  "name": "Prophecy Scanner",
+  "description": "A real-time geopolitical intelligence dashboard that filters global military, weather, and political events through the lens of Biblical prophecy. Features a tactical 'Situation Room' interface.",
+  "requestFramePermissions": []
+}
