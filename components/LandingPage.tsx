@@ -92,7 +92,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnter, onCheckout }) => {
             </div>
         </div>
       </section>
-{/* FEATURE GRID - REFACTORED FOR SCROLL HIGHLIGHTING */}
+
+      {/* FEATURE GRID */}
       <section id="features" className="py-24 bg-slate-900/50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -101,78 +102,98 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnter, onCheckout }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<FeatureCard 
-              number="01"
-              icon={<Crosshair className="w-7 h-7" />}
-              title="GEOSPATIAL THREAT MATRIX"
-              description="Live kinetic tracking of conflict zones, troop movements, and high-impact weather events."
-              verse="When you see Jerusalem surrounded by armies... (Luke 21:20)"
-              borderColor="border-cyber-blue/50"
-              iconBg="bg-cyber-blue/20"
-              iconBorder="border-cyber-blue/50"
-              iconColor="text-cyber-blue"
-            />
+            
+            {/* Feature 1: GEOSPATIAL THREAT MATRIX */}
+            <div className="p-8 bg-slate-950 border border-slate-800 rounded-sm hover:border-cyber-blue/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-6xl select-none group-hover:opacity-10 transition-opacity">01</div>
+              <div className="w-14 h-14 bg-slate-900 rounded-sm flex items-center justify-center mb-6 group-hover:bg-cyber-blue/20 transition-colors border border-slate-800 group-hover:border-cyber-blue/50">
+                <Crosshair className="text-cyber-blue w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-mono font-bold text-white mb-3">GEOSPATIAL THREAT MATRIX</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Live kinetic tracking of conflict zones, troop movements, and high-impact weather events.
+              </p>
+              <div className="border-t border-slate-900 pt-4">
+                <p className="text-xs text-slate-500 font-serif italic group-hover:text-slate-300 transition-colors">"When you see Jerusalem surrounded by armies..." (Luke 21:20)</p>
+              </div>
+            </div>
 
-            <FeatureCard 
-              number="02"
-              icon={<ScrollText className="w-7 h-7" />}
-              title="SCRIPTURE-INTEL BRIDGE"
-              description="Proprietary algorithms tag modern news headlines with their specific Biblical counterparts."
-              verse="Seal the book, even to the time of the end... (Daniel 12:4)"
-              borderColor="border-prophecy-gold/50"
-              iconBg="bg-prophecy-gold/20"
-              iconBorder="border-prophecy-gold/50"
-              iconColor="text-prophecy-gold"
-            />
+            {/* Feature 2: SCRIPTURE-INTEL BRIDGE */}
+            <div className="p-8 bg-slate-950 border border-slate-800 rounded-sm hover:border-prophecy-gold/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-6xl select-none group-hover:opacity-10 transition-opacity">02</div>
+              <div className="w-14 h-14 bg-slate-900 rounded-sm flex items-center justify-center mb-6 group-hover:bg-prophecy-gold/20 transition-colors border border-slate-800 group-hover:border-prophecy-gold/50">
+                <ScrollText className="text-prophecy-gold w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-mono font-bold text-white mb-3">SCRIPTURE-INTEL BRIDGE</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Proprietary algorithms tag modern news headlines with their specific Biblical counterparts.
+              </p>
+              <div className="border-t border-slate-900 pt-4">
+                <p className="text-xs text-slate-500 font-serif italic group-hover:text-slate-300 transition-colors">"Seal the book, even to the time of the end..." (Daniel 12:4)</p>
+              </div>
+            </div>
 
-            <FeatureCard 
-              number="03"
-              icon={<Radio className="w-7 h-7" />}
-              title="SECURE COMMS CHANNEL"
-              description="Encrypted chat sectors for discussing intel and prayer strategy with vetted Watchmen."
-              verse="Iron sharpens iron... (Proverbs 27:17)"
-              borderColor="border-alert-red/50"
-              iconBg="bg-alert-red/20"
-              iconBorder="border-alert-red/50"
-              iconColor="text-alert-red"
-            />
+            {/* Feature 3: SECURE COMMS CHANNEL */}
+            <div className="p-8 bg-slate-950 border border-slate-800 rounded-sm hover:border-alert-red/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-6xl select-none group-hover:opacity-10 transition-opacity">03</div>
+              <div className="w-14 h-14 bg-slate-900 rounded-sm flex items-center justify-center mb-6 group-hover:bg-alert-red/20 transition-colors border border-slate-800 group-hover:border-alert-red/50">
+                <Radio className="text-alert-red w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-mono font-bold text-white mb-3">SECURE COMMS CHANNEL</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Encrypted chat sectors for discussing intel and prayer strategy with vetted Watchmen.
+              </p>
+              <div className="border-t border-slate-900 pt-4">
+                <p className="text-xs text-slate-500 font-serif italic group-hover:text-slate-300 transition-colors">"Iron sharpens iron..." (Proverbs 27:17)</p>
+              </div>
+            </div>
 
-            <FeatureCard 
-              number="04"
-              icon={<Zap className="w-7 h-7" />}
-              title="FLASH TRANSMISSIONS"
-              description="Push notifications sent milliseconds after a 'Red Level' event is verified."
-              verse="If the watchman sees the sword coming... (Ezekiel 33:6)"
-              borderColor="border-alert-amber/50"
-              iconBg="bg-alert-amber/20"
-              iconBorder="border-alert-amber/50"
-              iconColor="text-alert-amber"
-            />
+             {/* Feature 4: FLASH TRANSMISSIONS */}
+             <div className="p-8 bg-slate-950 border border-slate-800 rounded-sm hover:border-alert-amber/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-6xl select-none group-hover:opacity-10 transition-opacity">04</div>
+              <div className="w-14 h-14 bg-slate-900 rounded-sm flex items-center justify-center mb-6 group-hover:bg-alert-amber/20 transition-colors border border-slate-800 group-hover:border-alert-amber/50">
+                <Zap className="text-alert-amber w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-mono font-bold text-white mb-3">FLASH TRANSMISSIONS</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Push notifications sent milliseconds after a "Red Level" event is verified.
+              </p>
+              <div className="border-t border-slate-900 pt-4">
+                <p className="text-xs text-slate-500 font-serif italic group-hover:text-slate-300 transition-colors">"If the watchman sees the sword coming..." (Ezekiel 33:6)</p>
+              </div>
+            </div>
 
-            <FeatureCard 
-              number="05"
-              icon={<History className="w-7 h-7" />}
-              title="ANCIENT PATTERN LOGS"
-              description="Review past timelines to identify recurring cycles in geopolitical escalation."
-              verse="That which has been is what will be... (Ecclesiastes 1:9)"
-              borderColor="border-slate-500/50"
-              iconBg="bg-slate-700/20"
-              iconBorder="border-slate-500/50"
-              iconColor="text-slate-400"
-            />
+            {/* Feature 5: ANCIENT PATTERN LOGS */}
+            <div className="p-8 bg-slate-950 border border-slate-800 rounded-sm hover:border-slate-500/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-6xl select-none group-hover:opacity-10 transition-opacity">05</div>
+              <div className="w-14 h-14 bg-slate-900 rounded-sm flex items-center justify-center mb-6 group-hover:bg-slate-700/20 transition-colors border border-slate-800 group-hover:border-slate-500/50">
+                <History className="text-slate-400 w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-mono font-bold text-white mb-3">ANCIENT PATTERN LOGS</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Review past timelines to identify recurring cycles in geopolitical escalation.
+              </p>
+              <div className="border-t border-slate-900 pt-4">
+                <p className="text-xs text-slate-500 font-serif italic group-hover:text-slate-300 transition-colors">"That which has been is what will be..." (Ecclesiastes 1:9)</p>
+              </div>
+            </div>
 
-            <FeatureCard 
-              number="06"
-              icon={<ScanEye className="w-7 h-7" />}
-              title="PROPHETIC LENS AUGMENTATION"
-              description="One-click context brings up relevant commentaries and verses for any active event."
-              verse="So that you may know the truth... (Luke 1:4)"
-              borderColor="border-cyber-blue/50"
-              iconBg="bg-cyber-blue/20"
-              iconBorder="border-cyber-blue/50"
-              iconColor="text-cyber-blue"
-            />
-</div>
+            {/* Feature 6: PROPHETIC LENS AUGMENTATION */}
+            <div className="p-8 bg-slate-950 border border-slate-800 rounded-sm hover:border-cyber-blue/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-6xl select-none group-hover:opacity-10 transition-opacity">06</div>
+              <div className="w-14 h-14 bg-slate-900 rounded-sm flex items-center justify-center mb-6 group-hover:bg-cyber-blue/20 transition-colors border border-slate-800 group-hover:border-cyber-blue/50">
+                <ScanEye className="text-cyber-blue w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-mono font-bold text-white mb-3">PROPHETIC LENS AUGMENTATION</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                One-click context brings up relevant commentaries and verses for any active event.
+              </p>
+              <div className="border-t border-slate-900 pt-4">
+                <p className="text-xs text-slate-500 font-serif italic group-hover:text-slate-300 transition-colors">"So that you may know the truth..." (Luke 1:4)</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
