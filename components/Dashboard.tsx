@@ -10,7 +10,7 @@ import IntelArchive from './IntelArchive';
 import BibleStudy from './BibleStudy';
 import Profile from './Profile';
 import { 
-  Menu, User, LogOut, Search, Bell, Monitor, Radio, Database, BookOpen, ChevronLeft 
+  Menu, User, Settings, LogOut, Search, Bell, Monitor, Radio, Database, BookOpen, ChevronLeft, ChevronRight 
 } from 'lucide-react';
 
 interface DashboardProps {
@@ -23,6 +23,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
   const [selectedEvent, setSelectedEvent] = useState<IntelEvent | null>(null);
   const [threatLevel, setThreatLevel] = useState<string>('ELEVATED');
   const [activeTab, setActiveTab] = useState<AppView>(AppView.DASHBOARD);
+  
+  // NEW: State for collapsible sidebar
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Simulate incoming live data
@@ -62,7 +64,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
              PROPHECY<span className="text-cyber-blue group-hover:text-cyan-400 transition-colors">SCANNER</span>
           </div>
           
-          {/* UPDATED NAV: Removed 'hidden lg:flex' so buttons are visible on all screens */}
+          {/* MODIFIED: Removed 'hidden lg:flex' and added horizontal scroll for visibility on all devices */}
           <div className="flex space-x-1 overflow-x-auto no-scrollbar">
              <button 
                onClick={() => setActiveTab(AppView.DASHBOARD)}
@@ -108,8 +110,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
         </div>
 
         <div className="flex items-center gap-4">
-           {/* Mobile hidden search to save space */}
-           <div className="relative hidden md:block">
+           <div className="relative hidden sm:block">
              <Search className="w-4 h-4 text-slate-500 absolute left-2 top-1.5" />
              <input 
                type="text" 
@@ -146,6 +147,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
               ${isSidebarOpen ? 'w-80 md:w-96 opacity-100' : 'w-0 opacity-0'}
             `}
           >
+             {/* We use a fixed width inner container so the text doesn't squish while the menu is closing */}
              <div className="w-80 md:w-96 h-full overflow-hidden">
                 <IntelFeed events={events} onSelect={handleEventClick} />
              </div>
@@ -153,9 +155,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
         )}
 
         {/* CONTENT AREA */}
-        <div className="flex-1 relative bg-slate-950 flex flex-col">
+        <div className="flex-1 relative bg-slate-950">
            {activeTab === AppView.DASHBOARD ? (
              <>
+               {/* TOGGLE HAMBURGER BUTTON (Only shows on Dashboard) */}
                <button 
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                   className="absolute top-4 left-4 z-40 bg-slate-950/80 backdrop-blur border border-slate-700 text-cyber-blue hover:text-white hover:bg-slate-800 p-2 rounded-sm shadow-lg transition-all"
@@ -200,6 +203,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
                             </div>
                          </div>
                       )}
+
+                      <div className="flex gap-2 pt-2">
+                         <button className="flex-1 bg-cyber-blue/10 border border-cyber-blue/50 text-cyber-blue text-[10px] font-mono py-2 hover:bg-cyber-blue/20 transition-colors uppercase tracking-widest">
+                           Full Report
+                         </button>
+                         <button className="flex-1 bg-slate-900 border border-slate-700 text-slate-500 text-[10px] font-mono py-2 hover:bg-slate-800 transition-colors uppercase tracking-widest">
+                           Verify
+                         </button>
+                      </div>
                     </div>
                  </div>
                )}
@@ -216,6 +228,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
              <div className="p-20 text-center font-mono text-slate-500">SYSTEM_ERROR: UNKNOWN_VIEW</div>
            )}
         </div>
+
       </div>
       
       {/* STATUS FOOTER */}
@@ -223,12 +236,14 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
          <div className="flex gap-6">
             <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]"></span> SYSTEM: ONLINE</span>
             <span>UPLINK_LATENCY: 12ms</span>
+            <span>SECURE_NODE: ALPHA-7</span>
          </div>
          <div className="flex gap-6 items-center">
             <span className="text-cyber-blue">WATCHMEN_ACTIVE: 1,402</span>
             <span className="bg-slate-900 px-2 py-0.5 rounded border border-slate-800">BETA v1.0.4</span>
          </div>
       </div>
+
     </div>
   );
 };
