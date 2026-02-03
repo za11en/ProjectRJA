@@ -10,7 +10,7 @@ import IntelArchive from './IntelArchive';
 import BibleStudy from './BibleStudy';
 import Profile from './Profile';
 import { 
-  Menu, User, Settings, LogOut, Search, Bell, Monitor, Radio, Database, BookOpen 
+  Menu, User, Settings, LogOut, Search, Bell, Monitor, Radio, Database, BookOpen, ChevronLeft, ChevronRight 
 } from 'lucide-react';
 
 interface DashboardProps {
@@ -23,6 +23,9 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
   const [selectedEvent, setSelectedEvent] = useState<IntelEvent | null>(null);
   const [threatLevel, setThreatLevel] = useState<string>('ELEVATED');
   const [activeTab, setActiveTab] = useState<AppView>(AppView.DASHBOARD);
+  
+  // NEW: State for collapsible sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Simulate incoming live data
   useEffect(() => {
@@ -137,8 +140,16 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
         
         {/* LEFT PANEL: INTEL FEED (Only on Dashboard map view) */}
         {activeTab === AppView.DASHBOARD && (
-          <div className="w-80 md:w-96 flex-shrink-0 z-10 h-full">
-             <IntelFeed events={events} onSelect={handleEventClick} />
+          <div 
+            className={`
+              transition-all duration-300 ease-in-out flex-shrink-0 z-10 h-full bg-slate-950 border-r border-slate-800
+              ${isSidebarOpen ? 'w-80 md:w-96 opacity-100' : 'w-0 opacity-0'}
+            `}
+          >
+             {/* We use a fixed width inner container so the text doesn't squish while the menu is closing */}
+             <div className="w-80 md:w-96 h-full overflow-hidden">
+                <IntelFeed events={events} onSelect={handleEventClick} />
+             </div>
           </div>
         )}
 
@@ -146,6 +157,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, onHome }) => {
         <div className="flex-1 relative bg-slate-950">
            {activeTab === AppView.DASHBOARD ? (
              <>
+               {/* TOGGLE HAMBURGER BUTTON (Only shows on Dashboard) */}
+               <button 
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  className="absolute top-4 left-4 z-40 bg-slate-950/80 backdrop-blur border border-slate-700 text-cyber-blue hover:text-white hover:bg-slate-800 p-2 rounded-sm shadow-lg transition-all"
+                  title={isSidebarOpen ? "Collapse Intel Feed" : "Expand Intel Feed"}
+               >
+                  {isSidebarOpen ? <ChevronLeft className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+               </button>
+
                <TacticalMap events={events} onEventClick={handleEventClick} />
                
                {/* OVERLAY: Selected Event Detail */}
